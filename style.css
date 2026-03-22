@@ -1,0 +1,123 @@
+:root{
+	--accent:#ff7a00; /* orange */
+	--accent-2:#9be564; /* light green */
+	--icon-color:#0066FF; /* vivid deep electric blue for solution icons */
+	--accent-3:#1fb6a5; /* teal */
+	--accent-4:#7c5cff; /* purple */
+	--dark:#0f1724;
+	--muted:#6b7280;
+	--bg:#fbfbf8;
+	--max-width:1200px;
+	--radius:12px;
+	--glass: rgba(255,255,255,0.6);
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, 'Segoe UI', Arial, sans-serif; margin:0; color:var(--dark); background:linear-gradient(180deg,#fbfbf8 0%, #f6fbf9 100%); line-height:1.6}
+.container{max-width:var(--max-width); margin:0 auto; padding:2.5rem}
+
+/* Header */
+.site-header{background:linear-gradient(90deg,var(--accent) 0%, #ffb069 100%); color:#fff; box-shadow:0 12px 36px rgba(17,24,39,0.08); position:sticky; top:0; z-index:30}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:0.85rem 0}
+.brand{font-weight:700; color:#fff; text-decoration:none; font-size:1.15rem}
+.brand{display:flex; align-items:center}
+.logo{height:64px; display:block; margin-right:.5rem}
+.hero-logo{height:72px; display:block; margin:0 auto 1rem}
+.cta-logo{height:20px; width:auto; vertical-align:middle; margin-right:.5rem}
+.main-nav{display:flex; align-items:center}
+.main-nav a{margin-left:0.8rem; color:rgba(255,255,255,0.95); text-decoration:none; padding:.5rem .6rem; border-radius:8px; transition:all .18s ease}
+.main-nav a:hover{color:var(--dark); background:rgba(255,255,255,0.9); transform:translateY(-2px)}
+.header-cta{margin-left:1rem; background:#fff; color:var(--accent); padding:.45rem .8rem; border-radius:999px; font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(17,24,39,0.08)}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#fff 0%, rgba(255,250,240,0.6) 100%); padding:4rem 0; border-radius:var(--radius); box-shadow:0 10px 40px rgba(15,20,36,0.06); margin-bottom:1.5rem}
+.hero-inner{text-align:center}
+.hero h1{font-size:2.6rem; margin:0 0 .5rem}
+.tagline{color:var(--muted); max-width:780px; margin:0 auto 1rem}
+.cta{display:inline-block; background:#fff; color:var(--accent); padding:.6rem 1rem; border-radius:999px; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(17,24,39,0.08); transition:transform .18s ease, box-shadow .18s ease}
+.cta:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(17,24,39,0.12)}
+
+/* Solutions */
+.services{padding:3rem 0}
+.services h2{margin-top:0}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem}
+.card{background:linear-gradient(180deg,#fff 0%, var(--glass) 100%); padding:1.25rem; border-radius:16px; box-shadow:0 8px 28px rgba(15,20,36,0.06); transition:transform .18s ease, box-shadow .18s ease}
+.card:hover{transform:translateY(-8px); box-shadow:0 18px 48px rgba(17,24,39,0.12)}
+
+.card .icon{width:120px; height:120px; display:flex; align-items:center; justify-content:center; background:#fff; color:var(--icon-color); border-radius:18px; margin-bottom:1rem}
+.card h3{margin:0 .25rem .5rem}
+.card p{margin:0 .25rem 0; color:var(--muted)}
+.card svg{width:72px; height:72px}
+.card .icon svg, .card .icon svg *{fill:var(--icon-color) !important; stroke:var(--icon-color) !important}
+
+/* Animated icon behavior */
+.icon svg .anim-bob{animation:float 3.5s ease-in-out infinite}
+.icon svg .anim-rotate{animation:spin 6s linear infinite}
+.card .icon:hover svg .anim-bob{animation-duration:2s}
+
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+@keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* Data bars animation for dashboard-style icons */
+.card svg .bar{transform-origin: center bottom; animation:barGrow 2s ease-in-out infinite}
+@keyframes barGrow{0%{transform:scaleY(.6)}50%{transform:scaleY(1)}100%{transform:scaleY(.7)}}
+
+/* Footer contact link styles */
+.contact-link{display:flex; align-items:center; gap:.5rem; color:var(--dark); text-decoration:none}
+.contact-link svg{width:18px; height:18px; flex:0 0 18px}
+.contact-link:hover{opacity:.9}
+
+/* Cartoon icon animations */
+.anim-bob{animation:float 3.2s ease-in-out infinite}
+.anim-rotate{animation:spin 6s linear infinite}
+.anim-splash{animation:splash 1.6s ease-in-out infinite}
+.anim-wave{animation:wave 2.2s ease-in-out infinite}
+
+@keyframes splash{0%{transform:scale(1)}50%{transform:scale(1.08) rotate(-4deg)}100%{transform:scale(1)}}
+@keyframes wave{0%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}100%{transform:rotate(-6deg)}}
+
+/* Make icons larger for visual impact (responsive sizes applied above) */
+@media (max-width:900px){
+	.card .icon{width:100px; height:100px}
+	.card svg{width:64px; height:64px}
+}
+@media (max-width:600px){
+	.card .icon{width:88px; height:88px}
+	.card svg{width:56px; height:56px}
+}
+
+/* About & Contact */
+.about, .contact{padding:2rem 0}
+.about-page{padding:2rem 0}
+.about-grid{display:grid; grid-template-columns:1fr 360px; gap:1.5rem; align-items:start}
+.about-copy p{margin-top:0}
+.ceo-block{background:linear-gradient(180deg,#fff 0%, #fbfbfb 100%); padding:1rem; border-radius:12px; box-shadow:0 6px 22px rgba(12,23,36,0.06); text-align:center}
+.ceo-photo{width:100%; height:auto; border-radius:8px}
+.ceo-bio{color:var(--muted); font-size:.95rem}
+.contact-form{display:grid; gap:.5rem; max-width:540px}
+.contact-form label{display:block}
+.contact-form input, .contact-form textarea{width:100%; padding:.6rem; border:1px solid #e6eef6; border-radius:8px}
+.contact-form button{width:fit-content; padding:.6rem 1rem; background:var(--accent); color:#fff; border:0; border-radius:8px}
+
+/* Footer */
+.site-footer{background:linear-gradient(180deg,#c7f69a 0%, var(--accent-2) 100%); border-top:1px solid rgba(0,0,0,0.02); margin-top:2.5rem}
+.footer-inner{display:flex; align-items:center; justify-content:space-between; padding:1.25rem 0}
+.footer-left{color:var(--dark)}
+.footer-contacts{display:flex; gap:1.5rem; align-items:center}
+.footer-contacts a{color:var(--dark); text-decoration:none}
+.footer-nav a{margin-left:1rem; color:var(--dark); text-decoration:none}
+
+/* Footer contact/address styles */
+.footer-left p{margin:.15rem 0}
+.footer-left .muted{opacity:.9}
+.footer-contacts strong{display:block; font-size:.9rem}
+.footer-contacts div{font-size:.95rem}
+
+@media (max-width:900px){
+	.about-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+	.header-inner{padding:.75rem}
+	.hero h1{font-size:1.8rem}
+	.footer-inner{flex-direction:column; gap:.5rem}
+	.logo{height:48px}
+}
