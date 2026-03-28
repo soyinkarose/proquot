@@ -76,5 +76,46 @@ async function loadIncludes(){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-	loadIncludes();
+	loadIncludes().then(()=>{
+		// attach global form handlers after includes load
+		setupFormHandlers();
+	}).catch(()=>{
+		setupFormHandlers();
+	});
 });
+
+function setupFormHandlers(){
+	// handle all contact forms except the demo form (which has its own handler)
+	const forms = document.querySelectorAll('form.contact-form');
+	forms.forEach(form=>{
+		if(form.id === 'demo-form') return;
+		// avoid attaching twice
+		if(form.__hasHandler) return;
+		form.addEventListener('submit', function(e){
+			e.preventDefault();
+			const data = new FormData(form);
+			const payload = {};
+			for(const [k,v] of data.entries()){
+				// collect repeated fields (e.g., categories[]/subcategories[])
+				if(k.endsWith('[]')){
+					const name = k.replace(/\[\]$/, '');
+					payload[name] = payload[name] || [];
+					payload[name].push(v);
+				} else {
+					// handle multiple occurrences (checkbox groups with same name)
+					if(payload[k] && Array.isArray(payload[k])){
+						payload[k].push(v);
+					} else if(payload[k]){
+						payload[k] = [payload[k], v];
+					} else {
+						payload[k] = v;
+					}
+				}
+			}
+			console.log('Contact form submit:', payload);
+			alert('Thanks — your message has been recorded. We will contact you shortly.');
+			form.reset();
+		});
+		form.__hasHandler = true;
+	});
+}
