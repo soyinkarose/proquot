@@ -98,6 +98,17 @@ body{font-family:Inter, system-ui, 'Segoe UI', Arial, sans-serif; margin:0; colo
 .contact-form input, .contact-form textarea{width:100%; padding:.6rem; border:1px solid #e6eef6; border-radius:8px}
 .contact-form button{width:fit-content; padding:.6rem 1rem; background:var(--accent); color:#fff; border:0; border-radius:8px}
 
+/* Request Demo form multi-select styling */
+.form-row{margin-bottom:1rem}
+.select-label{display:block; font-weight:700; margin-bottom:0.4rem; color:var(--dark)}
+.select-help{display:block; font-size:0.85rem; color:var(--muted); margin-top:0.25rem}
+.multi-select{width:100%; border:1px solid #e6eef6; border-radius:10px; padding:0.4rem; background:linear-gradient(180deg,#ffffff,#fbfbfb); min-height:3.2rem}
+.multi-select option{padding:0.35rem}
+
+@media (max-width:600px){
+	.multi-select{min-height:2.8rem}
+}
+
 /* Footer */
 .site-footer{background:linear-gradient(180deg,#c7f69a 0%, var(--accent-2) 100%); border-top:1px solid rgba(0,0,0,0.02); margin-top:2.5rem}
 .footer-inner{display:flex; align-items:center; justify-content:space-between; padding:1.25rem 0}

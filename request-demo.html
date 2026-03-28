@@ -37,40 +37,48 @@
           <input type="tel" name="phone">
         </label>
 
-        <label>
-          Select modules you're interested in (hold Ctrl/Cmd to select multiple)
-          <select name="modules" id="modules" multiple size="8">
-            <optgroup label="Accounting">
-              <option value="acct-core">Accounting — Core Financials</option>
-              <option value="acct-payroll">Accounting — Payroll</option>
-              <option value="acct-reporting">Accounting — Reporting & Tax</option>
-            </optgroup>
-            <optgroup label="HR">
-              <option value="hr-core">HR — Employee Records</option>
-              <option value="hr-payroll">HR — Payroll</option>
-              <option value="hr-recruitment">HR — Recruitment</option>
-            </optgroup>
-            <optgroup label="Sales">
-              <option value="sales-pos">Sales — POS (Point of Sale)</option>
-              <option value="sales-crm">Sales — CRM & Leads</option>
-              <option value="sales-ecom">Sales — eCommerce</option>
-            </optgroup>
-            <optgroup label="Purchase">
-              <option value="purchase-core">Purchase — Purchasing Workflows</option>
-              <option value="purchase-approvals">Purchase — Approvals</option>
-            </optgroup>
-            <optgroup label="Stock & Inventory">
-              <option value="stock-core">Stock — Inventory Control</option>
-              <option value="stock-warehousing">Stock — Warehousing</option>
-              <option value="stock-pos-integration">Stock — POS Integration</option>
-            </optgroup>
-            <optgroup label="Website / Applications">
-              <option value="web-site">Website — Public Sites</option>
-              <option value="web-app">Applications — Mobile / Web Apps</option>
-              <option value="web-integration">Integrations — APIs & Webhooks</option>
-            </optgroup>
+        <div class="form-row">
+          <label class="select-label" for="categories">Categories (select multiple)</label>
+          <select name="categories" id="categories" multiple size="6" class="multi-select">
+            <option value="accounting">Accounting</option>
+            <option value="hr">HR</option>
+            <option value="sales">Sales</option>
+            <option value="purchase">Purchase</option>
+            <option value="stock">Stock & Inventory</option>
+            <option value="web">Website / Applications</option>
           </select>
-        </label>
+          <span class="select-help">Hold Ctrl (Windows) or Cmd (Mac) to select multiple categories.</span>
+        </div>
+
+        <div class="form-row">
+          <label class="select-label" for="subcategories">Subcategories (select multiple)</label>
+          <select name="subcategories" id="subcategories" multiple size="10" class="multi-select">
+            <!-- Accounting -->
+            <option data-cat="accounting" value="acct-core">Accounting — Core Financials</option>
+            <option data-cat="accounting" value="acct-payroll">Accounting — Payroll</option>
+            <option data-cat="accounting" value="acct-reporting">Accounting — Reporting & Tax</option>
+            <!-- HR -->
+            <option data-cat="hr" value="hr-core">HR — Employee Records</option>
+            <option data-cat="hr" value="hr-payroll">HR — Payroll</option>
+            <option data-cat="hr" value="hr-recruitment">HR — Recruitment</option>
+            <!-- Sales -->
+            <option data-cat="sales" value="sales-pos">Sales — POS (Point of Sale)</option>
+            <option data-cat="sales" value="sales-crm">Sales — CRM & Leads</option>
+            <option data-cat="sales" value="sales-ecom">Sales — eCommerce</option>
+            <!-- Purchase -->
+            <option data-cat="purchase" value="purchase-core">Purchase — Purchasing Workflows</option>
+            <option data-cat="purchase" value="purchase-approvals">Purchase — Approvals</option>
+            <!-- Stock & Inventory -->
+            <option data-cat="stock" value="stock-core">Stock — Inventory Control</option>
+            <option data-cat="stock" value="stock-warehousing">Stock — Warehousing</option>
+            <option data-cat="stock" value="stock-pos-integration">Stock — POS Integration</option>
+            <!-- Website / Applications -->
+            <option data-cat="web" value="web-site">Website — Public Sites</option>
+            <option data-cat="web" value="web-app">Applications — Mobile / Web Apps</option>
+            <option data-cat="web" value="web-integration">Integrations — APIs & Webhooks</option>
+          </select>
+          <span class="select-help">Select any subcategories you'd like demos for.</span>
+        </div>
 
         <label>
           Additional details / subcategories
@@ -83,21 +91,46 @@
       <script>
         (function(){
           const form = document.getElementById('demo-form');
+          const categories = document.getElementById('categories');
+          const subcategories = document.getElementById('subcategories');
+
+          function filterSubcategories(){
+            const selectedCats = Array.from(categories.selectedOptions).map(o=>o.value);
+            Array.from(subcategories.options).forEach(opt=>{
+              if(selectedCats.length === 0){
+                opt.hidden = false; opt.disabled = false;
+              } else {
+                const cat = opt.getAttribute('data-cat');
+                const show = selectedCats.indexOf(cat) !== -1;
+                opt.hidden = !show;
+                opt.disabled = !show;
+              }
+            });
+          }
+
+          categories.addEventListener('change', filterSubcategories);
+          // initial filter state
+          filterSubcategories();
+
           form.addEventListener('submit', function(e){
             e.preventDefault();
             const data = new FormData(form);
-            const selected = Array.from(document.getElementById('modules').selectedOptions).map(o=>o.value);
+            const selectedCats = Array.from(categories.selectedOptions).map(o=>o.value);
+            const selectedSubs = Array.from(subcategories.selectedOptions).map(o=>o.value);
             const payload = {
               name: data.get('name'),
               email: data.get('email'),
               organisation: data.get('org'),
               phone: data.get('phone'),
-              modules: selected,
+              categories: selectedCats,
+              subcategories: selectedSubs,
               details: data.get('details')
             };
             console.log('Demo request:', payload);
             alert('Thanks — your demo request has been recorded. We will contact you shortly.');
             form.reset();
+            // reset filter to show all options again
+            filterSubcategories();
           });
         })();
       </script>
