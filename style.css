@@ -109,6 +109,18 @@ body{font-family:Inter, system-ui, 'Segoe UI', Arial, sans-serif; margin:0; colo
 	.multi-select{min-height:2.8rem}
 }
 
+/* Checkbox pill groups for categories/subcategories */
+.checkbox-group{display:flex; flex-wrap:wrap; gap:.5rem}
+.pill{display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .65rem; border-radius:999px; background:#fff; border:1px solid rgba(15,20,36,0.06); cursor:pointer; user-select:none; transition:all .15s ease}
+.pill input{display:none}
+.pill:hover{transform:translateY(-2px); box-shadow:0 6px 18px rgba(15,20,36,0.06)}
+.pill.selected{background:var(--icon-color); color:#fff; border-color:transparent}
+.subcategories{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.5rem}
+.sub-item{display:flex; align-items:center; gap:.6rem; padding:.4rem; background:#fff; border-radius:8px; border:1px solid rgba(15,20,36,0.04)}
+.sub-item input{display:none}
+.sub-item label{cursor:pointer}
+.sub-item.hidden{display:none}
+
 /* Footer */
 .site-footer{background:linear-gradient(180deg,#c7f69a 0%, var(--accent-2) 100%); border-top:1px solid rgba(0,0,0,0.02); margin-top:2.5rem}
 .footer-inner{display:flex; align-items:center; justify-content:space-between; padding:1.25rem 0}

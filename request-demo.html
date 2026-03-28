@@ -38,46 +38,46 @@
         </label>
 
         <div class="form-row">
-          <label class="select-label" for="categories">Categories (select multiple)</label>
-          <select name="categories" id="categories" multiple size="6" class="multi-select">
-            <option value="accounting">Accounting</option>
-            <option value="hr">HR</option>
-            <option value="sales">Sales</option>
-            <option value="purchase">Purchase</option>
-            <option value="stock">Stock & Inventory</option>
-            <option value="web">Website / Applications</option>
-          </select>
-          <span class="select-help">Hold Ctrl (Windows) or Cmd (Mac) to select multiple categories.</span>
+          <div class="select-label">Categories</div>
+          <div class="checkbox-group" id="categories">
+            <label class="pill"><input type="checkbox" name="categories[]" value="accounting">Accounting</label>
+            <label class="pill"><input type="checkbox" name="categories[]" value="hr">HR</label>
+            <label class="pill"><input type="checkbox" name="categories[]" value="sales">Sales</label>
+            <label class="pill"><input type="checkbox" name="categories[]" value="purchase">Purchase</label>
+            <label class="pill"><input type="checkbox" name="categories[]" value="stock">Stock & Inventory</label>
+            <label class="pill"><input type="checkbox" name="categories[]" value="web">Website / Applications</label>
+          </div>
+          <span class="select-help">Click a category to toggle selection.</span>
         </div>
 
         <div class="form-row">
-          <label class="select-label" for="subcategories">Subcategories (select multiple)</label>
-          <select name="subcategories" id="subcategories" multiple size="10" class="multi-select">
+          <div class="select-label">Subcategories</div>
+          <div class="subcategories" id="subcategories">
             <!-- Accounting -->
-            <option data-cat="accounting" value="acct-core">Accounting — Core Financials</option>
-            <option data-cat="accounting" value="acct-payroll">Accounting — Payroll</option>
-            <option data-cat="accounting" value="acct-reporting">Accounting — Reporting & Tax</option>
+            <div class="sub-item" data-cat="accounting"><input type="checkbox" id="acct-core" name="subcategories[]" value="acct-core"><label for="acct-core">Accounting — Core Financials</label></div>
+            <div class="sub-item" data-cat="accounting"><input type="checkbox" id="acct-payroll" name="subcategories[]" value="acct-payroll"><label for="acct-payroll">Accounting — Payroll</label></div>
+            <div class="sub-item" data-cat="accounting"><input type="checkbox" id="acct-reporting" name="subcategories[]" value="acct-reporting"><label for="acct-reporting">Accounting — Reporting & Tax</label></div>
             <!-- HR -->
-            <option data-cat="hr" value="hr-core">HR — Employee Records</option>
-            <option data-cat="hr" value="hr-payroll">HR — Payroll</option>
-            <option data-cat="hr" value="hr-recruitment">HR — Recruitment</option>
+            <div class="sub-item" data-cat="hr"><input type="checkbox" id="hr-core" name="subcategories[]" value="hr-core"><label for="hr-core">HR — Employee Records</label></div>
+            <div class="sub-item" data-cat="hr"><input type="checkbox" id="hr-payroll" name="subcategories[]" value="hr-payroll"><label for="hr-payroll">HR — Payroll</label></div>
+            <div class="sub-item" data-cat="hr"><input type="checkbox" id="hr-recruitment" name="subcategories[]" value="hr-recruitment"><label for="hr-recruitment">HR — Recruitment</label></div>
             <!-- Sales -->
-            <option data-cat="sales" value="sales-pos">Sales — POS (Point of Sale)</option>
-            <option data-cat="sales" value="sales-crm">Sales — CRM & Leads</option>
-            <option data-cat="sales" value="sales-ecom">Sales — eCommerce</option>
+            <div class="sub-item" data-cat="sales"><input type="checkbox" id="sales-pos" name="subcategories[]" value="sales-pos"><label for="sales-pos">Sales — POS (Point of Sale)</label></div>
+            <div class="sub-item" data-cat="sales"><input type="checkbox" id="sales-crm" name="subcategories[]" value="sales-crm"><label for="sales-crm">Sales — CRM & Leads</label></div>
+            <div class="sub-item" data-cat="sales"><input type="checkbox" id="sales-ecom" name="subcategories[]" value="sales-ecom"><label for="sales-ecom">Sales — eCommerce</label></div>
             <!-- Purchase -->
-            <option data-cat="purchase" value="purchase-core">Purchase — Purchasing Workflows</option>
-            <option data-cat="purchase" value="purchase-approvals">Purchase — Approvals</option>
+            <div class="sub-item" data-cat="purchase"><input type="checkbox" id="purchase-core" name="subcategories[]" value="purchase-core"><label for="purchase-core">Purchase — Purchasing Workflows</label></div>
+            <div class="sub-item" data-cat="purchase"><input type="checkbox" id="purchase-approvals" name="subcategories[]" value="purchase-approvals"><label for="purchase-approvals">Purchase — Approvals</label></div>
             <!-- Stock & Inventory -->
-            <option data-cat="stock" value="stock-core">Stock — Inventory Control</option>
-            <option data-cat="stock" value="stock-warehousing">Stock — Warehousing</option>
-            <option data-cat="stock" value="stock-pos-integration">Stock — POS Integration</option>
+            <div class="sub-item" data-cat="stock"><input type="checkbox" id="stock-core" name="subcategories[]" value="stock-core"><label for="stock-core">Stock — Inventory Control</label></div>
+            <div class="sub-item" data-cat="stock"><input type="checkbox" id="stock-warehousing" name="subcategories[]" value="stock-warehousing"><label for="stock-warehousing">Stock — Warehousing</label></div>
+            <div class="sub-item" data-cat="stock"><input type="checkbox" id="stock-pos-integration" name="subcategories[]" value="stock-pos-integration"><label for="stock-pos-integration">Stock — POS Integration</label></div>
             <!-- Website / Applications -->
-            <option data-cat="web" value="web-site">Website — Public Sites</option>
-            <option data-cat="web" value="web-app">Applications — Mobile / Web Apps</option>
-            <option data-cat="web" value="web-integration">Integrations — APIs & Webhooks</option>
-          </select>
-          <span class="select-help">Select any subcategories you'd like demos for.</span>
+            <div class="sub-item" data-cat="web"><input type="checkbox" id="web-site" name="subcategories[]" value="web-site"><label for="web-site">Website — Public Sites</label></div>
+            <div class="sub-item" data-cat="web"><input type="checkbox" id="web-app" name="subcategories[]" value="web-app"><label for="web-app">Applications — Mobile / Web Apps</label></div>
+            <div class="sub-item" data-cat="web"><input type="checkbox" id="web-integration" name="subcategories[]" value="web-integration"><label for="web-integration">Integrations — APIs & Webhooks</label></div>
+          </div>
+          <span class="select-help">Click categories to filter the list below, then click subcategories to pick specific demos.</span>
         </div>
 
         <label>
@@ -91,25 +91,41 @@
       <script>
         (function(){
           const form = document.getElementById('demo-form');
-          const categories = document.getElementById('categories');
-          const subcategories = document.getElementById('subcategories');
+          const categories = document.querySelectorAll('#categories input[type=checkbox]');
+          const subitems = document.querySelectorAll('#subcategories .sub-item');
+
+          function getSelectedCats(){
+            return Array.from(categories).filter(c=>c.checked).map(c=>c.value);
+          }
 
           function filterSubcategories(){
-            const selectedCats = Array.from(categories.selectedOptions).map(o=>o.value);
-            Array.from(subcategories.options).forEach(opt=>{
-              if(selectedCats.length === 0){
-                opt.hidden = false; opt.disabled = false;
+            const selected = getSelectedCats();
+            subitems.forEach(item=>{
+              const cat = item.getAttribute('data-cat');
+              if(selected.length === 0 || selected.indexOf(cat) !== -1){
+                item.classList.remove('hidden');
+                item.querySelector('input').disabled = false;
               } else {
-                const cat = opt.getAttribute('data-cat');
-                const show = selectedCats.indexOf(cat) !== -1;
-                opt.hidden = !show;
-                opt.disabled = !show;
+                item.classList.add('hidden');
+                item.querySelector('input').disabled = true;
+                item.querySelector('input').checked = false;
               }
             });
           }
 
-          categories.addEventListener('change', filterSubcategories);
-          // initial filter state
+          categories.forEach(chk=>{
+            chk.addEventListener('change', function(){
+              const label = this.closest('label');
+              if(label){
+                label.classList.toggle('selected', this.checked);
+              }
+              filterSubcategories();
+            });
+            // initialize pill selected state
+            const lab = chk.closest('label'); if(lab) lab.classList.toggle('selected', chk.checked);
+          });
+
+          // initialize filter
           filterSubcategories();
 
           form.addEventListener('submit', function(e){
